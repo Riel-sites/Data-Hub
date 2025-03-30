@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+
+
+<style>
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html,body{
+   display: grid;
+   height: 100%;
+   width: 100%;
+   place-items: center;
+   background: #f2f2f2;
+   background: -webkit-linear-gradient(left, #a445b2,#fa4299);
+
+}
+
+.wrapper{
+    max-width: 390px;
+    box-shadow: 0 15px 20px rgba(0,0,0,0,.1);
+    background: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+ .wrapper .title-text{
+    display: flex;
+    width: 200%;
+}
+
+.wrapper .title-text .title{
+    width: 50%;
+    font-weight: 600;
+    font-size: 35px;
+    text-align: center;
+}
+
+.wrapper .form-container{
+    width: 100%;
+    overflow: hidden;
+}
+
+form{
+    width: 50%;
+}
+
+.form-container .form-inner{
+display: flex;
+width: 200%;
+}
+
+.slide-controls{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0 10px 0;
+    justify-content: space-between;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.slide-tab{
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    left: 0;
+    z-index: 0;
+    background: -webkit-linear-gradient(left, #a445b2,#fa4299);
+    border-radius: 5px;
+    transition: all .6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+
+}
+
+.slide{
+    height: 100%;
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 48px;
+    font-weight: 500;
+    z-index: 1;
+    color: #fff;
+    transition: all .6s ease;
+
+}
+
+.signup{
+color: black;
+}
+
+.field{
+height: 50px;
+width: 100%;
+margin-top: 20px;
+margin-bottom: 5px;
+
+}
+
+input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding-left: 15px;
+    border-radius: 5px;
+    font-size: 17px;
+    border: 1px solid lightgray;
+    border-bottom-width: 2px; /*thickness of border*/
+    transition: all .4s ease;
+}
+
+input:focus{
+    border-color: #fc83bb;
+}
+
+.signup-link{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.pass-link a, .signup-link a{
+    margin-top: 5px;
+    color: #fa4299;
+    text-decoration: none;
+}
+
+.pass-link a:hover, .signup-link a:hover{
+    text-decoration: underline;
+}
+/*move to the right when clicked on*/
+#signup:checked ~ .slide-tab{
+    left: 50%;
+}
+
+#signup:checked ~ .signup{
+    color: #fff;
+}
+
+#signup:checked ~ .login{
+    color: #000;
+}
+
+input[type="submit"] {
+    margin-bottom: 12px;
+    background: -webkit-linear-gradient(left, #a445b2,#fa4299);
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    padding-left: 0px;
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+
+</style>
+
+<body>
+    <div class="wrapper">
+        <div class="title-text">
+        <div class="title login">Login Form</div>
+        <div class="title signup">Signin form</div>
+    </div>
+
+       <div class="form-container">
+        <div class="slide-controls">
+            <input type="radio" name="slider" id="login" checked>
+            <input type="radio" name="slider" id="signup">
+
+            <label for="login" class="slide login">Login</label>
+            <label for="signup" class="slide signup">Signup</label>
+            <div class="slide-tab"></div>
+        </div>
+       
+        <div class="form-inner">
+            <!--contains login form-->
+            <form action="#" class="login">
+
+                <div class="field"> <!--contains text-box-->
+                    <input type="email" name="email" id="email" placeholder="Email Address" required>
+                </div>
+
+                <div class="field">
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                </div>
+
+                <div class="pass-link"><a href="#">Forgot password?</a></div>
+
+                <div class="field">
+                    <input type="submit" value="Login">
+                </div>
+
+<div class="signup-link">Not a member? <a href="#">Signup now</a></div>
+
+            </form>
+
+            <!--contains signup form-->
+            <form action="#" class="signup">
+
+                <div class="field"> <!--contains text-box-->
+                    <input type="email" name="email" id="email" placeholder="Email Address" required>
+                </div>
+
+                <div class="field">
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                </div>
+
+                <div class="field">
+                    <input type="password" name="password" id="password" placeholder="Confirm password" required>
+                </div>
+
+                <div class="field">
+                    <input type="submit" value="Signup">
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+    </div>
+
+<script>
+    const loginForm = document.querySelector("form.login");
+    const signupForm = document.querySelector("form.signup");
+    const loginBtn = document.querySelector("label.login");
+    const signupBtn = document.querySelector("label.signup");
+    const signuplink = document.querySelector("signup-link a");
+    const loginText = document.querySelector(".title-text .login");
+    const signupText = document.querySelector(".title-text .signup");
+    
+    
+    signupBtn.onclick= (()=>{
+        loginForm.style.marginLeft = "-50%";
+        loginText.style.marginLeft = "-50%";
+
+
+    });   
+
+    loginBtn.onclick = (()=>{
+        loginForm.style.marginLeft = "0%";
+        loginText.style.marginLeft = "0%";
+    });
+
+signupLink.onclick = (() =>{
+    signupBtn.click();
+        return false;
+    });
+</script>
+
+</body>
+</html>
